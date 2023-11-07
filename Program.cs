@@ -27,7 +27,7 @@
                 string command = argument[0];
                 if (command == "quit")
                 {
-                    Console.WriteLine("Goodbye!");
+                    Console.WriteLine("Goodbye!"); // FIXME: programmet ska stängas
                 }
                 else if (command == "load")
                 {
