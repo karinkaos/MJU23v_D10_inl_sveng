@@ -33,15 +33,15 @@
                 }
                 else if (command == "load")
                 {
-                    if(argument.Length == 2)
+                    if (argument.Length == 2)
                     {
                         using (StreamReader sr = new StreamReader(argument[1]))
-                        LoadList(sr);
+                            LoadList(sr);
                     }
-                    else if(argument.Length == 1)
+                    else if (argument.Length == 1)
                     {
                         using (StreamReader sr = new StreamReader(defaultFile))
-                        LoadList(sr);
+                            LoadList(sr);
                     }
                 }
                 else if (command == "list")
@@ -54,7 +54,7 @@
                     {
                         dictionary.Add(new SweEngGloss(argument[1], argument[2]));
                     }
-                    else if(argument.Length == 1)
+                    else if (argument.Length == 1)
                     {
                         Console.WriteLine("Write word in Swedish: ");
                         string sweNew = Console.ReadLine();
@@ -85,7 +85,7 @@
                 }
                 else if (argument.Length == 1)
                 {
-                    Console.WriteLine("Write word in Swedish: ");
+                    Console.Write("Write word in Swedish: ");
                     string sweNew = Console.ReadLine();
                     Console.Write("Write word in English: ");
                     string engNew = Console.ReadLine();
@@ -149,34 +149,6 @@
                 Console.WriteLine($"{gloss.word_swe,-10}  - {gloss.word_eng,-10}");
             }
         }
-        private static void DeleteGloss(string[] argument)
-        {
-            if (argument.Length == 3)
-            {
-                int index = -1;
-                for (int i = 0; i < dictionary.Count; i++)
-                {
-                    SweEngGloss gloss = dictionary[i];
-                    if (gloss.word_swe == argument[1] && gloss.word_eng == argument[2])
-                        index = i;
-                }
-                dictionary.RemoveAt(index);
-            }
-            else if (argument.Length == 1)
-            {
-                Console.WriteLine("Write word in Swedish: ");
-                string sweNew = Console.ReadLine();
-                Console.Write("Write word in English: ");
-                string engNew = Console.ReadLine();
-                int index = -1;
-                for (int i = 0; i < dictionary.Count; i++)
-                {
-                    SweEngGloss gloss = dictionary[i];
-                    if (gloss.word_swe == sweNew && gloss.word_eng == engNew)
-                        index = i;
-                }
-                dictionary.RemoveAt(index);
-            }
-        }
+
     }
 }
