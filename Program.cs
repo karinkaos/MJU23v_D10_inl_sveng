@@ -64,64 +64,71 @@
                         dictionary.Add(new SweEngGloss(sweNew, engNew));
                     }
                 }
-                else if (command == "delete")
-                {
-                    if (argument.Length == 3)
-                    {
-                        int index = -1;
-                        for (int i = 0; i < dictionary.Count; i++) {
-                            SweEngGloss gloss = dictionary[i];
-                            if (gloss.word_swe == argument[1] && gloss.word_eng == argument[2])
-                                index = i;
-                        }
-                        dictionary.RemoveAt(index);
-                    }
-                    else if (argument.Length == 1)
-                    {
-                        Console.WriteLine("Write word in Swedish: ");
-                        string s = Console.ReadLine();
-                        Console.Write("Write word in English: ");
-                        string e = Console.ReadLine();
-                        int index = -1;
-                        for (int i = 0; i < dictionary.Count; i++)
-                        {
-                            SweEngGloss gloss = dictionary[i];
-                            if (gloss.word_swe == s && gloss.word_eng == e)
-                                index = i;
-                        }
-                        dictionary.RemoveAt(index);
-                    }
-                }
-                else if (command == "translate")
-                {
-                    if (argument.Length == 2)
-                    {
-                        foreach(SweEngGloss gloss in dictionary)
-                        {
-                            WordTranslate();
-                        }
-                    }
-                    else if (argument.Length == 1)
-                    {
-                            Console.WriteLine("Write word to be translated: ");
-                            WordTranslate();
-                        }
-                    }
-                else
-                {
-                    Console.WriteLine($"Unknown command: '{command}'");
-                }
+                else DeleteGloss(argument, command);
             }
             while (true);
         }
+
+        private static void DeleteGloss(string[] argument, string command)
+        {
+            if (command == "delete")
+            {
+                if (argument.Length == 3)
+                {
+                    int index = -1;
+                    for (int i = 0; i < dictionary.Count; i++)
+                    {
+                        SweEngGloss gloss = dictionary[i];
+                        if (gloss.word_swe == argument[1] && gloss.word_eng == argument[2])
+                            index = i;
+                    }
+                    dictionary.RemoveAt(index);
+                }
+                else if (argument.Length == 1)
+                {
+                    Console.WriteLine("Write word in Swedish: ");
+                    string sweNew = Console.ReadLine();
+                    Console.Write("Write word in English: ");
+                    string engNew = Console.ReadLine();
+                    int index = -1;
+                    for (int i = 0; i < dictionary.Count; i++)
+                    {
+                        SweEngGloss gloss = dictionary[i];
+                        if (gloss.word_swe == sweNew && gloss.word_eng == engNew)
+                            index = i;
+                    }
+                    dictionary.RemoveAt(index);
+                }
+            }
+            else if (command == "translate")
+            {
+                if (argument.Length == 2)
+                {
+                    foreach (SweEngGloss gloss in dictionary)
+                    {
+                        WordTranslate();
+                    }
+                }
+                else if (argument.Length == 1)
+                {
+                    Console.WriteLine("Write word to be translated: ");
+                    WordTranslate();
+                }
+            }
+            else
+            {
+                Console.WriteLine($"Unknown command: '{command}'");
+            }
+        }
+
         private static void WordTranslate()
         {
-            string s = Console.ReadLine();
+            string sweNew = Console.ReadLine(); // Bytt namn på s även här: sweNew
             foreach (SweEngGloss gloss in dictionary)
             {
-                if (gloss.word_swe == s)
+                if (gloss.word_swe == sweNew) // Bytt namn på s även här: sweNew
                     Console.WriteLine($"English for {gloss.word_swe} is {gloss.word_eng}");
-                if (gloss.word_eng == s)
+                if (gloss.word_eng == s) // FIXME: fel variabel, implementera och byt
                     Console.WriteLine($"Swedish for {gloss.word_eng} is {gloss.word_swe}");
             }
         }
@@ -134,6 +141,35 @@
                 SweEngGloss gloss = new(line);
                 dictionary.Add(gloss);
                 line = sr.ReadLine();
+            }
+        }
+        private static void DeleteGloss(string[] argument)
+        {
+            if (argument.Length == 3)
+            {
+                int index = -1;
+                for (int i = 0; i < dictionary.Count; i++)
+                {
+                    SweEngGloss gloss = dictionary[i];
+                    if (gloss.word_swe == argument[1] && gloss.word_eng == argument[2])
+                        index = i;
+                }
+                dictionary.RemoveAt(index);
+            }
+            else if (argument.Length == 1)
+            {
+                Console.WriteLine("Write word in Swedish: ");
+                string sweNew = Console.ReadLine();
+                Console.Write("Write word in English: ");
+                string engNew = Console.ReadLine();
+                int index = -1;
+                for (int i = 0; i < dictionary.Count; i++)
+                {
+                    SweEngGloss gloss = dictionary[i];
+                    if (gloss.word_swe == sweNew && gloss.word_eng == engNew)
+                        index = i;
+                }
+                dictionary.RemoveAt(index);
             }
         }
     }
