@@ -44,10 +44,7 @@
                 }
                 else if (command == "list")
                 {
-                    foreach(SweEngGloss gloss in dictionary)
-                    {
-                        Console.WriteLine($"{gloss.word_swe,-10}  - {gloss.word_eng,-10}");
-                    }
+                    List();
                 }
                 else if (command == "new")
                 {
@@ -141,6 +138,13 @@
                 SweEngGloss gloss = new(line);
                 dictionary.Add(gloss);
                 line = sr.ReadLine();
+            }
+        }
+        static void List()
+        {
+            foreach (SweEngGloss gloss in dictionary)
+            {
+                Console.WriteLine($"{gloss.word_swe,-10}  - {gloss.word_eng,-10}");
             }
         }
         private static void DeleteGloss(string[] argument)
