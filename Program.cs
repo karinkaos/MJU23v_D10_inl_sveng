@@ -19,6 +19,7 @@
         static void Main(string[] args)
         {
             string defaultFile = "..\\..\\..\\dict\\sweeng.lis";
+            //Lagt till computing.lis i rätt mapp, kan nås via "load computing.lis" > "list"
             Console.WriteLine("Welcome to the dictionary app!");
             do
             {
