@@ -120,12 +120,13 @@
 
         private static void WordTranslate()
         {
-            string sweNew = Console.ReadLine(); // Bytt namn på s även här: sweNew
+            string sweNew = Console.ReadLine();
+            string engNew = Console.ReadLine();
             foreach (SweEngGloss gloss in dictionary)
             {
-                if (gloss.word_swe == sweNew) // Bytt namn på s även här: sweNew
+                if (gloss.word_swe == sweNew)
                     Console.WriteLine($"English for {gloss.word_swe} is {gloss.word_eng}");
-                if (gloss.word_eng == s) // FIXME: fel variabel, implementera och byt
+                if (gloss.word_eng == engNew)
                     Console.WriteLine($"Swedish for {gloss.word_eng} is {gloss.word_swe}");
             }
         }
