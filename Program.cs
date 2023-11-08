@@ -21,6 +21,7 @@
             string defaultFile = "..\\..\\..\\dict\\sweeng.lis";
             //Lagt till computing.lis i rätt mapp, kan nås via "load computing.lis" > "list"
             Console.WriteLine("Welcome to the dictionary app!");
+            Console.WriteLine("Write help to see avaliable commands.");
             do
             {
                 Console.Write("> ");
@@ -30,6 +31,16 @@
                 {
                     Console.WriteLine("Goodbye!");
                     System.Environment.Exit(0);
+                }
+                else if (command == "help")
+                {
+                    Console.WriteLine("Avaliable commands: "); // NYI: läs in texten i help via fil istället för lista i koden.
+                    Console.WriteLine("Write load before using any command."); // FIXME: load ska inte behövas för att övriga kommandon ska fungera.
+                    Console.WriteLine("list");
+                    Console.WriteLine("load");
+                    Console.WriteLine("translate");
+                    Console.WriteLine("delete");
+                    Console.WriteLine("new");
                 }
                 else if (command == "load")
                 {
@@ -56,7 +67,7 @@
                     }
                     else if (argument.Length == 1)
                     {
-                        Console.WriteLine("Write word in Swedish: ");
+                        Console.Write("Write word in Swedish: ");
                         string sweNew = Console.ReadLine();
                         Console.Write("Write word in English: ");
                         string engNew = Console.ReadLine();
