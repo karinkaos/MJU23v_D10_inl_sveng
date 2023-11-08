@@ -27,7 +27,8 @@
                 string command = argument[0];
                 if (command == "quit")
                 {
-                    Console.WriteLine("Goodbye!"); // FIXME: programmet ska stängas
+                    Console.WriteLine("Goodbye!");
+                    System.Environment.Exit(0);
                 }
                 else if (command == "load")
                 {
@@ -121,12 +122,11 @@
         private static void WordTranslate()
         {
             string sweNew = Console.ReadLine();
-            string engNew = Console.ReadLine();
             foreach (SweEngGloss gloss in dictionary)
             {
                 if (gloss.word_swe == sweNew)
                     Console.WriteLine($"English for {gloss.word_swe} is {gloss.word_eng}");
-                if (gloss.word_eng == engNew)
+                if (gloss.word_eng == sweNew) //Ändrat tillbaka, föreg push blev fel.
                     Console.WriteLine($"Swedish for {gloss.word_eng} is {gloss.word_swe}");
             }
         }
